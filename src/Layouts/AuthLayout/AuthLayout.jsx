@@ -1,15 +1,15 @@
 import React from 'react';
 import Navbar from '../../Components/Header/Navbar';
-import Footer from '../../Components/Footer/Footer';
 import { Outlet } from 'react-router';
+import Footer from '../../Components/Footer/Footer';
 
-const MainLayout = () => {
+const AuthLayout = () => {
     return (
         <div>
             <header>
                 <Navbar />
             </header>
-            <main className='max-w-7xl mx-auto'>
+            <main className='max-w-7xl mx-auto h-[95vh] flex justify-center items-center'>
                 <Outlet></Outlet>
             </main>
             <footer>
@@ -21,4 +21,4 @@ const MainLayout = () => {
     );
 };
 
-export default MainLayout;
+export default AuthLayout;
