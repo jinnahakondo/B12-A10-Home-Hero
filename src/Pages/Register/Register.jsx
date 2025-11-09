@@ -35,17 +35,17 @@ const Register = () => {
     }
     return (
         <div className='w-full '>
-            <div className='bg-base-200 shadow-md mx-auto max-w-[320px] p-7 rounded-2xl'>
+            <div className='bg-white shadow-md mx-auto max-w-[450px] p-7 rounded-2xl'>
                 <h2 className='text-xl font-semibold text-center mt-5 mb-3'>Create new account</h2>
                 <p className='text-center mb-5'>Access to our all services or service
                     providers </p>
-                <form className='w-full' onSubmit={handelCreateUser}>
-                    {/* Name  */}
-                    <div>
+                <form className='w-full space-y-2' onSubmit={handelCreateUser}>
+                    {/* Name*/}
+                    <div className=''>
                         <label className="label">Name</label>
                         <input type="text"
                             name='name'
-                            className="input"
+                            className="input w-full"
                             placeholder="Jinnah" />
                     </div>
                     {/* Photo  */}
@@ -53,7 +53,7 @@ const Register = () => {
                         <label className="label">Photo</label>
                         <input type="text"
                             name='photo'
-                            className="input"
+                            className="input w-full"
                             placeholder="https://example.com" />
                     </div>
                     {/* email  */}
@@ -61,7 +61,7 @@ const Register = () => {
                         <label className="label">Email</label>
                         <input type="email"
                             name='email'
-                            className="input"
+                            className="input  w-full"
                             placeholder="example@gmail.com" />
                     </div>
                     {/* password  */}
@@ -69,10 +69,10 @@ const Register = () => {
                         <label className="label">Password</label>
                         <input type="password"
                             name='password'
-                            className="input"
-                            placeholder="******" />
+                            className="input  w-full"
+                            placeholder="password" />
                     </div>
-                    <button className="btn btn-neutral mt-4 w-full"> Sign up</button>
+                    <button className="btn btn-primary hover mt-4 w-full"> Sign up</button>
                 </form>
                 <div className='text-center my-4'>
                     <p>or</p>

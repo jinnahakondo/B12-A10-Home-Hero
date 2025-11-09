@@ -2,6 +2,24 @@
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
-  --color-primary: blue;
-  --color-secondary: teal;
+  name: "light";
+  default: true;
+  --color-primary: #05668D;
+  --color-secondary: #427AA1;
+  --color-highlight: #A5BE00;
+  --color-background: #EBF2FA;
+  --color-success: #679436;
+}
+
+
+body {
+  background-color: #EBF2FA;
+}
+
+a.active {
+  @apply bg-secondary text-white rounded-full
+}
+
+a.hover, button.hover {
+  @apply hover:bg-transparent hover:border-primary hover:text-primary
 }

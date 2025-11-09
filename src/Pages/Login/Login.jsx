@@ -29,17 +29,17 @@ const Login = () => {
     }
     return (
         <div className='w-full '>
-            <div className='bg-base-200 shadow-md mx-auto max-w-[320px] p-7 rounded-2xl'>
+            <div className='bg-white shadow-md mx-auto max-w-[450px] p-7 rounded-2xl'>
                 <h2 className='text-xl font-semibold text-center mt-5 mb-3'>Login to account</h2>
                 <p className='text-center mb-5'>Access to our all services or service
                     providers </p>
-                <form className='w-full' onSubmit={handelLogin}>
+                <form className='w-full space-y-2' onSubmit={handelLogin}>
                     {/* email  */}
                     <div>
                         <label className="label">Email</label>
                         <input type="email"
                             name='email'
-                            className="input"
+                            className="input  w-full"
                             placeholder="example@gmail.com" />
                     </div>
                     {/* password  */}
@@ -47,12 +47,12 @@ const Login = () => {
                         <label className="label">Password</label>
                         <input type="password"
                             name='password'
-                            className="input"
-                            placeholder="******" />
+                            className="input w-full"
+                            placeholder="password" />
                     </div>
                     {/* forget password */}
                     <div><a className="link link-hover">Forgot password?</a></div>
-                    <button className="btn btn-neutral mt-4 w-full">Login</button>
+                    <button className="btn btn-primary mt-4 w-full hover">Login</button>
                 </form>
                 <div className='text-center my-4'>
                     <p className=''>or</p>

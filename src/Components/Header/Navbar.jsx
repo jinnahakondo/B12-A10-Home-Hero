@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
+import Loader from '../Loader/Loader';
 
 const Navbar = () => {
     const { user, loading, setLoading, logOut, } = useAuth()
@@ -17,14 +18,18 @@ const Navbar = () => {
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/services'}>Services</NavLink></li>
-        <li><NavLink to={'/my-services'}>My Services</NavLink></li>
-        <li><NavLink to={'/add-services'}>Add Service</NavLink></li>
+        {user &&
+            <>
+                <li><NavLink to={'/my-services'}>My Services</NavLink></li>
+                <li><NavLink to={'/add-services'}>Add Service</NavLink></li>
+            </>
+        }
     </>
     if (loading) {
-        return <p>loading...</p>
+        return <Loader />
     }
     return (
-        <div className='bg-base-100 shadow-sm'>
+        <div className=' bg-[#EBF2FA]  shadow-sm'>
             <div className="navbar max-w-7xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -37,10 +42,10 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">Home Hero</a>
+                    <a className="btn btn-ghost text-xl font-bold">Home Hero</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu menu-horizontal px-1 space-x-5 font-medium text-base">
                         {links}
                     </ul>
                 </div>
@@ -71,7 +76,7 @@ const Navbar = () => {
                                 </ul>
                             </div>
                             :
-                            <Link to={'/auth'} className='btn'>Login</Link>
+                            <Link to={'/auth'} className='btn btn-primary hover px-8 py-4'>Login</Link>
                         }
 
                     </div>
