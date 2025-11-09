@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 
 const Login = () => {
+    const location = useLocation();
+    const navigate = useNavigate()
+    // console.log(location);
     const { login, setLoading, googleSignIn } = useAuth()
     const handelLogin = e => {
         e.preventDefault();
@@ -11,6 +14,7 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 console.log(result.user);
+                navigate('/')
                 setLoading(false)
             })
             .catch(error => {
@@ -22,6 +26,7 @@ const Login = () => {
         googleSignIn()
             .then(result => {
                 console.log(result.user);
+                navigate('/')
             })
             .catch(error => {
                 console.log(error.code);

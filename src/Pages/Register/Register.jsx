@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 
 const Register = () => {
+    const navigate = useNavigate()
     const { createUser, setLoading, updateUserProfile, googleSignIn } = useAuth();
     const handelCreateUser = (e) => {
         e.preventDefault();
@@ -16,6 +17,7 @@ const Register = () => {
                 updateUserProfile({ displayName, photoURL })
                     .then(() => {
                         setLoading(false)
+                        navigate('/')
                     })
             })
             .catch(error => {
@@ -28,6 +30,7 @@ const Register = () => {
         googleSignIn()
             .then(result => {
                 console.log(result.user);
+                navigate('/')
             })
             .catch(error => {
                 console.log(error.code);
