@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 const Navbar = () => {
     const links = <>
@@ -31,7 +31,8 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <div className="flex-none">
-                        <div className="dropdown dropdown-end">
+                        <Link to={'/auth'} className='btn'>Login</Link>
+                        {/* <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
                                     <img
@@ -51,7 +52,7 @@ const Navbar = () => {
                                 <li><a>Settings</a></li>
                                 <li><a>Logout</a></li>
                             </ul>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
