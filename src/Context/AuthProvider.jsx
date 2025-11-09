@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContex';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.config';
+const googleProvider = new GoogleAuthProvider()
 
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-
+    const [loading, setLoading] = useState(false);
+    console.log('checking loading', loading);
+    console.log('checking user', user);
     // create account with email and pass 
     const createUser = (email, pass) => {
         setLoading(true);
@@ -22,11 +24,19 @@ const AuthProvider = ({ children }) => {
 
     // login with email and pass
     const login = (email, pass) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, pass)
+    }
+
+    //login with google
+    const googleSignIn = () => {
+        setLoading(true)
+        return signInWithPopup(auth, googleProvider)
     }
 
     //logout 
     const logOut = () => {
+        setLoading(true)
         return signOut(auth)
     }
 
@@ -34,10 +44,9 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         setLoading(true)
         const unSubcribe = onAuthStateChanged(auth, (currentUser) => {
-            if (currentUser) {
-                setUser(currentUser)
-                setLoading(false)
-            }
+            setUser(currentUser)
+            setLoading(false)
+
         })
         return () => unSubcribe()
     }, [])
@@ -52,6 +61,7 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
         login,
         logOut,
+        googleSignIn,
     }
 
     return <AuthContext value={userInfo}>

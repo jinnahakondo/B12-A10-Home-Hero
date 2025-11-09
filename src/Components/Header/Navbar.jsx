@@ -3,11 +3,11 @@ import { Link, NavLink } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 
 const Navbar = () => {
-    const { user, setUser, logOut } = useAuth()
+    const { user, loading, setLoading, logOut, } = useAuth()
     const handelLogOut = () => {
         logOut()
             .then(() => {
-                setUser(null)
+                setLoading(false)
                 console.log("signOUt success");
             })
             .catch(error => {
@@ -20,6 +20,9 @@ const Navbar = () => {
         <li><NavLink to={'/my-services'}>My Services</NavLink></li>
         <li><NavLink to={'/add-services'}>Add Service</NavLink></li>
     </>
+    if (loading) {
+        return <p>loading...</p>
+    }
     return (
         <div className='bg-base-100 shadow-sm'>
             <div className="navbar max-w-7xl mx-auto">
@@ -52,10 +55,11 @@ const Navbar = () => {
                                             src={user?.photoURL} />
                                     </div>
                                 </div>
-                                <p>{user?.displayName}</p>
+
                                 <ul
                                     tabIndex="-1"
                                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                                    <p>{user?.displayName}</p>
                                     <li>
                                         <a className="justify-between">
                                             Profile
