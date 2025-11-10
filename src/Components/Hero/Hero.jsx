@@ -29,7 +29,7 @@ const Hero = () => {
                             <h1 className='text-3xl lg:text-5xl font-extrabold text-white text-center '>Professional House Cleaning <br /> Services</h1>
                             <p className='text-white text-center my-7'>Keep your home spotless and stress-free with our trusted cleaning experts. We handle everything from dusting and mopping to deep cleaning <br /> kitchens and bathrooms — so you can relax in a fresh, healthy environment.</p>
 
-                            <Link to={'/auth'} className='btn btn-primary  hover px-8 py-4'>See Details</Link>
+                            <Link to={'/services'} className='btn btn-primary  hover px-8 py-4'>Explore Now</Link>
                         </div>
 
                     </div>
@@ -45,7 +45,7 @@ const Hero = () => {
                             <h1 className='text-3xl lg:text-5xl font-extrabold text-white text-center '>Expert Electrical Repairs <br /> & Installations</h1>
                             <p className='text-white text-center my-7'>From minor repairs to full wiring, our licensed electricians deliver fast and dependable service — ensuring safety and lasting performance. We’re <br /> here to keep your home powered efficiently with quality you can trust.</p>
 
-                            <Link to={'/auth'} className='btn btn-primary  hover px-8 py-4'>See Details</Link>
+                            <Link to={'/services'} className='btn btn-primary  hover px-8 py-4'>Explore Now</Link>
                         </div>
 
                     </div>
@@ -56,12 +56,12 @@ const Hero = () => {
 
                         <img src={Gardening} alt="" className='h-full object-cover w-full' />
                     </div>
-                     <div className=' bg-[#0000005b] absolute top-0 w-full flex justify-center items-center flex-col min-h-full'>
+                    <div className=' bg-[#0000005b] absolute top-0 w-full flex justify-center items-center flex-col min-h-full'>
                         <div className='max-w-7xl mx-auto grid place-items-center px-5'>
                             <h1 className='text-3xl lg:text-5xl font-extrabold text-white text-center '>Professional Gardening & Landscaping <br /> Service</h1>
                             <p className='text-white text-center my-7'>Bring your outdoor space to life with our expert gardening services — from lawn care and plant maintenance to landscape design. We ensure a fresh, <br />green, and beautifully organized garden that enhances your home’s natural beauty.</p>
 
-                            <Link to={'/auth'} className='btn btn-primary  hover px-8 py-4'>See Details</Link>
+                            <Link to={'/services'} className='btn btn-primary  hover px-8 py-4'>Explore Now</Link>
                         </div>
 
                     </div>

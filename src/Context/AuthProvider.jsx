@@ -8,8 +8,8 @@ const googleProvider = new GoogleAuthProvider()
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
-    console.log('checking loading', loading);
-    console.log('checking user', user);
+    // console.log('checking loading', loading);
+    // console.log('checking user', user);
     // create account with email and pass 
     const createUser = (email, pass) => {
         setLoading(true);
