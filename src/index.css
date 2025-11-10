@@ -23,3 +23,6 @@ a.active {
 a.hover, button.hover {
   @apply hover:bg-transparent hover:border-primary hover:text-primary
 }
+
+
+/* #0000004d */
