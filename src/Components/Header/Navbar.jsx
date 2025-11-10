@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import Loader from '../Loader/Loader';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
     const { user, loading, setLoading, logOut, } = useAuth()
@@ -9,10 +10,10 @@ const Navbar = () => {
         logOut()
             .then(() => {
                 setLoading(false)
-                console.log("signOUt success");
+                toast.success("signOUt success");
             })
             .catch(error => {
-                console.log(error.code);
+                toast.error(error.code);
             })
     }
     const links = <>
@@ -63,7 +64,7 @@ const Navbar = () => {
 
                                 <ul
                                     tabIndex="-1"
-                                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                                    className="menu menu-sm dropdown-content bg-base-100 rounded-box  mt-3 w-52 p-2 shadow z-10">
                                     <p>{user?.displayName}</p>
                                     <li>
                                         <a className="justify-between">

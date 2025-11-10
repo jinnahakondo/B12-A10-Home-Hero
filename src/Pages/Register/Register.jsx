@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const navigate = useNavigate()
@@ -18,6 +19,7 @@ const Register = () => {
                     .then(() => {
                         setLoading(false)
                         navigate('/')
+                        toast.success('account created successfully')
                     })
             })
             .catch(error => {
@@ -31,9 +33,10 @@ const Register = () => {
             .then(result => {
                 console.log(result.user);
                 navigate('/')
+                toast.success('log in success')
             })
             .catch(error => {
-                console.log(error.code);
+                toast.error(error.code);
             })
     }
     return (

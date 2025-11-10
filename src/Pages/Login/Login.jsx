@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const location = useLocation();
@@ -26,10 +27,11 @@ const Login = () => {
         googleSignIn()
             .then(result => {
                 console.log(result.user);
+                toast.success('log in success')
                 navigate('/')
             })
             .catch(error => {
-                console.log(error.code);
+                toast.error(error.code);
             })
     }
     return (

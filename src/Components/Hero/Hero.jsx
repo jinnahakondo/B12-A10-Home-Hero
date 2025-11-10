@@ -10,7 +10,7 @@ import { Link } from 'react-router';
 
 const Hero = () => {
     return (
-        <div>
+        <div className='-z-20'>
             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
                 pagination
