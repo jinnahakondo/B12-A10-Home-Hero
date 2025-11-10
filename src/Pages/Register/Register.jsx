@@ -39,7 +39,7 @@ const Register = () => {
     return (
         <div className='w-full '>
             <div className='bg-white shadow-md mx-auto max-w-[450px] p-7 rounded-2xl'>
-                <h2 className='text-xl font-semibold text-center mt-5 mb-3'>Create new account</h2>
+                <h3 className=' heading text-center mt-5 mb-3'>Create new account</h3>
                 <p className='text-center mb-5'>Access to our all services or service
                     providers </p>
                 <form className='w-full space-y-2' onSubmit={handelCreateUser}>

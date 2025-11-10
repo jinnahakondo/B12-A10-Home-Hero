@@ -6,6 +6,7 @@ import Register from "../Pages/Register/Register";
 import Home from "../Pages/Home/Home";
 import PrivateRoutes from "./PrivateRoutes";
 import MyServices from "../Pages/My-Services/MyServices";
+import Services from "../Pages/Services/Services";
 
 export const router = createBrowserRouter([
     {
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/services',
-                element: <p>service</p>
+                Component:Services
             },
             {
                 path: '/my-services',
