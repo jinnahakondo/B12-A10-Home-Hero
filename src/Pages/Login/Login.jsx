@@ -7,7 +7,7 @@ import useAuth from '../../Hooks/useAuth';
 const Login = () => {
     const navigate = useNavigate()
 
-    const { login, setLoading, googleSignIn, loading } = useAuth()
+    const { login, setLoading, googleSignIn, loading, user } = useAuth()
     const handelLogin = e => {
         e.preventDefault();
         const email = e.target.email.value;

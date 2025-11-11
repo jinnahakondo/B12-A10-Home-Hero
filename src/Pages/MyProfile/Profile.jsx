@@ -1,11 +1,10 @@
 import React from 'react';
-import { data, Link } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
-import Loader from '../../Components/Loader/Loader';
 import { toast } from 'react-toastify';
 
 const Profile = () => {
     const { user, updateUserProfile, setLoading } = useAuth()
+    console.log(user);
 
     const updateProfile = (e) => {
         e.preventDefault()
@@ -65,6 +64,7 @@ const Profile = () => {
                 <div>
                     <h3 className='text-lg font-semibold max-md:text-center'>{user.displayName}</h3>
                     <p className='text-gray-500'>{user.email}</p>
+                    <p className='text-gray-500'>last login: {user.metadata.lastSignInTime}</p>
                 </div>
             </div>
             <div className='h-0.5 w-full border border-gray-200'></div>
@@ -74,16 +74,22 @@ const Profile = () => {
                     <h4 className='font-semibold'> Name</h4>
                     <input type="text" name="name" className='border-b border-gray-300 outline-0 w-full text-gray-500' />
                 </div>
-                {/* email  */}
-                <div className='pb-7 '>
-                    <h4 className='font-semibold'> email</h4>
-                    <input type="email" readOnly defaultValue='jinnahakodon@gmail.com' className='border-b border-gray-300 outline-0 w-full text-left text-gray-500' />
+                {/* phone number  */}
+                <div className='py-7 '>
+                    <h4 className='font-semibold'> Phone number</h4>
+                    <input type="number" name="number" placeholder='+8801********' className='border-b border-gray-300 outline-0 w-full text-gray-500' />
                 </div>
                 {/* photo  */}
                 <div className='pb-7 '>
                     <h4 className='font-semibold'> photo URL</h4>
                     <input type="text" name='photo' className='border-b border-gray-300 outline-0 w-full text-left text-gray-500' />
                 </div>
+                {/* email  */}
+                <div className='pb-7 '>
+                    <h4 className='font-semibold'> email</h4>
+                    <input type="email" readOnly defaultValue='jinnahakodon@gmail.com' className='border-b border-gray-300 outline-0 w-full text-left text-gray-500' />
+                </div>
+
                 <button type='submit' className="btn btn-primary mt-4 hover">Save Change</button>
             </form>
         </div>
