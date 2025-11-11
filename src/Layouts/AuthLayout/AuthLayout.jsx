@@ -5,11 +5,11 @@ import Footer from '../../Components/Footer/Footer';
 
 const AuthLayout = () => {
     return (
-        <div className=' h-screen'>
+        <div className=' '>
             <header>
                 <Navbar />
             </header>
-            <main className='max-w-7xl px-5 my-20 mx-auto h-[90vh] flex justify-center items-center'>
+            <main className='max-w-7xl px-5 my-20 mx-auto h-[70vh] flex justify-center items-center'>
                 <Outlet></Outlet>
             </main>
             <footer>

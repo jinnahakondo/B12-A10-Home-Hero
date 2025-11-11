@@ -8,6 +8,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import MyServices from "../Pages/My-Services/MyServices";
 import Services from "../Pages/Services/Services";
 import Profile from "../Pages/MyProfile/Profile";
+import AddServices from "../Pages/Add services/AddServices";
 
 export const router = createBrowserRouter([
     {
@@ -31,7 +32,7 @@ export const router = createBrowserRouter([
             {
                 path: '/add-services',
                 element: <PrivateRoutes>
-                    <p>add service</p>
+                    <AddServices />
                 </PrivateRoutes>
             },
             {

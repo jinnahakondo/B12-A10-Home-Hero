@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ChooseCard from './ChooseCard';
 import axios from 'axios';
 
-const ChooseUse = () => {
+const ChooseUs = () => {
     const [details, setDetails] = useState([])
     useEffect(() => {
         axios.get('./choose.json')
@@ -24,4 +24,4 @@ const ChooseUse = () => {
     );
 };
 
-export default ChooseUse;
+export default ChooseUs;
