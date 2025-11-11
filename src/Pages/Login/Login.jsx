@@ -12,6 +12,16 @@ const Login = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+        if (!/^.{6,}$/.test(password)) {
+            return toast.error("Password must have at least 6 characters");
+        }
+        else if (!/[A-Z]/.test(password)) {
+            return toast.error("Password must have at least on uppercase");
+        }
+        else if (!/[a-z]/.test(password)) {
+            return toast.error("Password must have at least on lowercase");
+        }
+
         login(email, password)
             .then(result => {
                 console.log(result.user);
@@ -45,6 +55,7 @@ const Login = () => {
                     <div>
                         <label className="label">Email</label>
                         <input type="email"
+                            required
                             name='email'
                             className="input  w-full"
                             placeholder="example@gmail.com" />
@@ -53,6 +64,7 @@ const Login = () => {
                     <div>
                         <label className="label">Password</label>
                         <input type="password"
+                            required
                             name='password'
                             className="input w-full"
                             placeholder="password" />

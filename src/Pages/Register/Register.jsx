@@ -12,6 +12,16 @@ const Register = () => {
         const password = e.target.password.value;
         const displayName = e.target.name.value;
         const photoURL = e.target.photo.value;
+
+        if (!/^.{6,}$/.test(password)) {
+            return toast.error("Password must have at least 6 characters");
+        }
+        else if (!/[A-Z]/.test(password)) {
+            return toast.error("Password must have at least on uppercase");
+        }
+        else if (!/[a-z]/.test(password)) {
+            return toast.error("Password must have at least on lowercase");
+        }
         createUser(email, password)
             .then(result => {
                 console.log(result.user);
@@ -50,6 +60,7 @@ const Register = () => {
                     <div className=''>
                         <label className="label">Name</label>
                         <input type="text"
+                            required
                             name='name'
                             className="input w-full"
                             placeholder="Jinnah" />
@@ -66,6 +77,7 @@ const Register = () => {
                     <div>
                         <label className="label">Email</label>
                         <input type="email"
+                            required
                             name='email'
                             className="input  w-full"
                             placeholder="example@gmail.com" />
@@ -74,6 +86,7 @@ const Register = () => {
                     <div>
                         <label className="label">Password</label>
                         <input type="password"
+                            required
                             name='password'
                             className="input  w-full"
                             placeholder="password" />
