@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router';
-import useAuth from '../../Hooks/useAuth';
+import { Link, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
+import Loader from '../../Components/Loader/Loader';
+import useAuth from '../../Hooks/useAuth';
 
 const Login = () => {
-    const location = useLocation();
     const navigate = useNavigate()
-    // console.log(location);
-    const { login, setLoading, googleSignIn } = useAuth()
+
+    const { login, setLoading, googleSignIn, loading } = useAuth()
     const handelLogin = e => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -25,8 +25,8 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 console.log(result.user);
-                navigate('/')
                 setLoading(false)
+                navigate('/')
             })
             .catch(error => {
                 console.log(error.code);
@@ -38,12 +38,17 @@ const Login = () => {
             .then(result => {
                 console.log(result.user);
                 toast.success('log in success')
+                setLoading(false)
                 navigate('/')
             })
             .catch(error => {
                 toast.error(error.code);
             })
     }
+    if (loading) {
+        return <Loader />
+    }
+
     return (
         <div className='w-full '>
             <div className='bg-white shadow-md mx-auto max-w-[450px] p-7 rounded-2xl'>

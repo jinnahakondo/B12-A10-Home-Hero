@@ -26,9 +26,7 @@ const Navbar = () => {
             </>
         }
     </>
-    if (loading) {
-        return <Loader />
-    }
+ 
     return (
         <div className=' bg-[#EBF2FA]  shadow-sm'>
             <div className="navbar h-[10vh] max-w-7xl mx-auto">
@@ -67,10 +65,10 @@ const Navbar = () => {
                                     className="menu menu-sm dropdown-content bg-base-100 rounded-box  mt-3 w-52 p-2 shadow z-10">
                                     <p>{user?.displayName}</p>
                                     <li>
-                                        <a className="justify-between">
+                                        <Link to={'/my-profile'} className="justify-between">
                                             Profile
                                             <span className="badge">New</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li><a>Settings</a></li>
                                     <li><button onClick={handelLogOut}>Logout</button></li>

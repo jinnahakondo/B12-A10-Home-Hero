@@ -2,10 +2,11 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import { toast } from 'react-toastify';
+import Loader from '../../Components/Loader/Loader';
 
 const Register = () => {
     const navigate = useNavigate()
-    const { createUser, setLoading, updateUserProfile, googleSignIn } = useAuth();
+    const { createUser, setLoading, updateUserProfile, googleSignIn, loading } = useAuth();
     const handelCreateUser = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -27,8 +28,8 @@ const Register = () => {
                 console.log(result.user);
                 updateUserProfile({ displayName, photoURL })
                     .then(() => {
-                        setLoading(false)
                         navigate('/')
+                        setLoading(false)
                         toast.success('account created successfully')
                     })
             })
@@ -43,11 +44,15 @@ const Register = () => {
             .then(result => {
                 console.log(result.user);
                 navigate('/')
+                setLoading(false)
                 toast.success('log in success')
             })
             .catch(error => {
                 toast.error(error.code);
             })
+    }
+    if (loading) {
+        return <Loader />
     }
     return (
         <div className='w-full '>
