@@ -1,11 +1,11 @@
 import React from 'react';
 import useAuth from '../../Hooks/useAuth';
-import useAxios from '../../Hooks/useAxios';
 import { toast } from 'react-toastify';
+import useSecureAxios from '../../Hooks/useSecureAxios';
 
 const AddServices = () => {
     const { user } = useAuth()
-    const instance = useAxios()
+    const instance = useSecureAxios()
 
     const handelSubmit = e => {
         e.preventDefault()
@@ -14,9 +14,9 @@ const AddServices = () => {
         const image = form.imageUrl.value;
         const description = form.description.value;
         const price = form.price.value;
-        const category = form.category.value;
+        const Category = form.category.value;
 
-        const newService = { title, image, description, price, category, provider: user.displayName, email: user.email, created_at: new Date() }
+        const newService = { title, image, description, price, Category, provider: user.displayName, email: user.email, created_at: new Date() }
 
         instance.post('/services', newService)
             .then(data => {
