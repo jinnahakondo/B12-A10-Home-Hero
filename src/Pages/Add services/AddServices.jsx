@@ -59,8 +59,7 @@ const AddServices = () => {
                         <label>Category Name</label>
                         <input type="text" required placeholder='category' name='category' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
                     </div>
-                    <div className='grid grid-cols-2 gap-5 lg:gap-10 mt-10'>
-                        <button className='btn btn-error text-white'>Cencel</button>
+                    <div className=' mt-10'>
                         <button type='submit' className='btn btn-primary text-white'>Add Service</button>
                     </div>
                 </form>
