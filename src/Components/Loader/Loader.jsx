@@ -2,7 +2,7 @@ import React from 'react';
 
 const Loader = () => {
     return (
-        <div>
+        <div className='grid place-items-center min-h-screen'>
             Loading...
         </div>
     );

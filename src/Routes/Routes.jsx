@@ -10,6 +10,7 @@ import Profile from "../Pages/MyProfile/Profile";
 import AddServices from "../Pages/Add services/AddServices";
 import MyServices from "../Pages/MyServicess/MyServices";
 import UpdateService from "../Components/UpdateService/UpdateService";
+import ServiceDetails from "../Components/ServiceDetails/ServiceDetails";
 
 export const router = createBrowserRouter([
     {
@@ -23,6 +24,12 @@ export const router = createBrowserRouter([
             {
                 path: '/services',
                 Component: Services
+            },
+            {
+                path: '/service-details/:id',
+                element: <PrivateRoutes>
+                    <ServiceDetails />
+                </PrivateRoutes>
             },
             {
                 path: '/my-services',

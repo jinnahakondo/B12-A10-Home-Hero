@@ -16,7 +16,7 @@ const Service = ({ service }) => {
                         <h3 className='text-center text-lg font-medium mb-5'>{service.title}</h3>
                         {/* <p>{service.price}</p> */}
                         <div className='grid place-items-center'>
-                            <Link to={'/auth'} className='btn btn-primary  hover px-8 py-4'>See Details</Link>
+                            <Link to={`/service-details/${service._id}`} className='btn btn-primary  hover px-8 py-4'>See Details</Link>
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ const LatestServices = () => {
     const instance = useAxios()
     const [service, setService] = useState([])
     useEffect(() => {
-        instance.get('/services')
+        instance.get('/services/home')
             .then(data => {
                 setService(data.data)
                 console.log(data.data);

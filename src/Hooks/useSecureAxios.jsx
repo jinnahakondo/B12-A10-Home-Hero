@@ -7,9 +7,10 @@ const instance = axios.create({
 });
 const useSecureAxios = () => {
     const { user } = useAuth()
+
     // set token in header for all api 
     instance.interceptors.request.use((config) => {
-        config.headers.authorization = `Bearer ${user.accessToken}`
+        config.headers.authorization = `Bearer ${user?.accessToken}`
         return config;
     })
     return instance;
