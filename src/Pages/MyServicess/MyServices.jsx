@@ -49,11 +49,12 @@ const MyServices = () => {
     return (
         <div className='max-w-7xl mx-auto px-5'>
 
-            {/* table  */}
+
+
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className='text-sm md:text-base'>
                         <tr>
                             <th>SL</th>
                             <th>Service Info</th>
@@ -62,13 +63,12 @@ const MyServices = () => {
                         </tr>
                     </thead>
                     <tbody>
-
                         {myservice.map((service, i) => <tr key={service._id}>
                             <th>{i + 1}</th>
                             <td>
-                                <div className="flex items-center gap-3">
+                                <div className="flex flex-col-reverse md:flex-row items-center gap-3">
                                     <div className="avatar">
-                                        <div className="h-12 w-16 rounded-sm">
+                                        <div className="h-12 w-16 rounded-sm object-cover">
                                             <img
                                                 src={service.image}
                                                 alt="Avatar Tailwind CSS Component" />
@@ -79,16 +79,19 @@ const MyServices = () => {
                                     </div>
                                 </div>
                             </td>
+
                             <td>{service.Category}</td>
-                            <th>
-                                <Link to={`/update-service/${service._id}`} className="btn btn-primary text-xl px-5 mr-7"><MdEditDocument /></Link>
+                            <td className='grid grid-cols-1 md:grid-cols-2 gap-4 ' >
+
+                                <Link to={`/update-service/${service._id}`} className="btn btn-primary text-xl px-5 "><MdEditDocument /></Link>
+
                                 <button onClick={() => handelDelete(service._id)} className="btn btn-error text-white text-xl px-5"><MdDelete /></button>
-                            </th>
+
+                            </td>
                         </tr>)}
                     </tbody>
                 </table>
             </div>
-
         </div>
     );
 };
