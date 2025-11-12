@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { data, useNavigate, useParams } from 'react-router';
 import useSecureAxios from '../../Hooks/useSecureAxios';
 import Loader from '../Loader/Loader';
+import useAuth from '../../Hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const ServiceDetails = () => {
     const navigate = useNavigate()
+    const { user } = useAuth()
+    const modalRef = useRef()
     const instance = useSecureAxios()
     const { id } = useParams()
     const [service, setService] = useState(null)
-    console.log(service);
+
     useEffect(() => {
         instance.get(`/services/${id}`)
             .then(data => {
@@ -19,6 +23,22 @@ const ServiceDetails = () => {
         return <Loader />
     }
 
+    const handelSubmit = e => {
+        e.preventDefault();
+        const serveicId = service._id;
+        const email = user.email;
+        const Price = e.target.price.value;
+        const bookingDate = e.target.bookingDate.value;
+        const newBooking = { serveicId, email, Price, bookingDate }
+
+        instance.post('/bookings', newBooking)
+            .then(data => {
+                if (data.data.insertedId) {
+                    toast.success('service has been booked')
+                    modalRef.current.close()
+                }
+            })
+    }
     return (
         <div className='max-w-7xl mx-auto px-5 mt-20 min-h-screen'>
 
@@ -41,8 +61,49 @@ const ServiceDetails = () => {
             </div>
             <div className='mt-10 flex input-accent gap-5'>
                 <button onClick={() => navigate(-1)} className='btn py-5 bg-black text-white'>Go Back</button>
-                <button className='btn btn-primary px-8'>Book now</button>
+                <button onClick={() => { modalRef.current.showModal() }} className='btn btn-primary px-8'>Book now</button>
             </div>
+
+
+            {/* modal  */}
+            <dialog id="my_modal_5" ref={modalRef} className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <div className='max-w-3xl rounded-2xl mx-5 md:mx-auto bg-white  p-7 ' >
+                        <h2 className='heading mb-4'>Booking Service</h2>
+                        <form className='space-y-4' onSubmit={handelSubmit}>
+
+                            {/* User Email  */}
+                            <div className='flex flex-col gap-2'>
+                                <label>User Email</label>
+                                <input type="email"
+                                    value={user.email}
+                                    readOnly
+                                    placeholder='user email' name='userEmail' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
+                            </div>
+                            {/*Price */}
+                            <div className='flex flex-col gap-2'>
+                                <label>Price</label>
+                                <input type="number" placeholder='price' name='price' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
+                            </div>
+                            {/* Booking Date */}
+                            <div className='flex flex-col gap-2'>
+                                <label>Booking Date</label>
+                                <input type="date" required placeholder='category' name='bookingDate' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
+                            </div>
+
+                            <div className=' mt-10 flex justify-between items-center'>
+                                <button className='btn' onClick={(e) => {
+                                    e.preventDefault()
+                                    modalRef.current.close()
+                                }}>close</button>
+                                <button type='submit' className='btn btn-primary text-white'>Book</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </dialog>
+
         </div>
     );
 };
