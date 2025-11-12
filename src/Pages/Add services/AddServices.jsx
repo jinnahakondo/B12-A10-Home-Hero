@@ -22,7 +22,8 @@ const AddServices = () => {
             .then(data => {
                 if (data.data.insertedId) {
                     toast.success('services added successfully')
-                    console.log("data after add", data.data);
+                    // console.log("data after add", data.data);
+                    e.target.reset()
                 }
             })
             .catch(error => console.log(error.code))
@@ -36,27 +37,27 @@ const AddServices = () => {
                     {/* servece name  */}
                     <div className='flex flex-col gap-2'>
                         <label>Service Name</label>
-                        <input type="text" placeholder='Service Name' name='serviceName' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
+                        <input type="text" required placeholder='Service Name' name='serviceName' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
                     </div>
                     {/*Image URL  */}
                     <div className='flex flex-col gap-2'>
                         <label>Image URL</label>
-                        <input type="text" placeholder='imageUrl' name='imageUrl' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
+                        <input type="text" required placeholder='imageUrl' name='imageUrl' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
                     </div>
                     {/*Description  */}
                     <div className='flex flex-col gap-2'>
                         <label>Description</label>
-                        <textarea name="description" rows="5" className='border border-gray-300 rounded-lg p-3 outline-0'></textarea>
+                        <textarea name="description" rows="5" required className='border border-gray-300 rounded-lg p-3 outline-0'></textarea>
                     </div>
                     {/*Price */}
                     <div className='flex flex-col gap-2'>
                         <label>Price</label>
-                        <input type="number" placeholder='price' name='price' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
+                        <input type="number" required placeholder='price' name='price' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
                     </div>
                     {/* category */}
                     <div className='flex flex-col gap-2'>
                         <label>Category Name</label>
-                        <input type="text" placeholder='category' name='category' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
+                        <input type="text" required placeholder='category' name='category' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
                     </div>
                     <div className='grid grid-cols-2 gap-5 lg:gap-10 mt-10'>
                         <button className='btn btn-error text-white'>Cencel</button>

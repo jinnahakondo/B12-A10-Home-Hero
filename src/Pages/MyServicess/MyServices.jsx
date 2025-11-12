@@ -3,6 +3,8 @@ import useSecureAxios from '../../Hooks/useSecureAxios';
 import useAuth from '../../Hooks/useAuth';
 import { MdDelete, MdEditDocument } from "react-icons/md";
 import { Link } from 'react-router';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const MyServices = () => {
     const { user } = useAuth()
@@ -19,7 +21,30 @@ const MyServices = () => {
 
     // handel Delete
     const handelDelete = (id) => {
-        console.log("delete", id);
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                instance.delete(`/services/${id}`)
+                    .then(() => {
+                        setMyService(myservice.filter(s => s._id !== id))
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    })
+            }
+        });
+
+
     }
     return (
         <div className='max-w-7xl mx-auto px-5'>
@@ -33,7 +58,6 @@ const MyServices = () => {
                             <th>SL</th>
                             <th>Service Info</th>
                             <th>Category</th>
-                            <th>Creading Date</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -44,22 +68,21 @@ const MyServices = () => {
                             <td>
                                 <div className="flex items-center gap-3">
                                     <div className="avatar">
-                                        <div className="mask mask-squircle h-12 w-12">
+                                        <div className="h-12 w-16 rounded-sm">
                                             <img
                                                 src={service.image}
                                                 alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div>
                                     <div>
-                                        <h4 className="font-medium">{service.title}</h4>
+                                        <h4 className="font-medium ">{service.title.slice(0, 25)}</h4>
                                     </div>
                                 </div>
                             </td>
-                            <td className=''>{service.Category}</td>
-                            <td>{service.created_at}</td>
+                            <td>{service.Category}</td>
                             <th>
                                 <Link to={`/update-service/${service._id}`} className="btn btn-primary text-xl px-5 mr-7"><MdEditDocument /></Link>
-                                <button onClick={handelDelete} className="btn btn-error text-white text-xl px-5"><MdDelete /></button>
+                                <button onClick={() => handelDelete(service._id)} className="btn btn-error text-white text-xl px-5"><MdDelete /></button>
                             </th>
                         </tr>)}
                     </tbody>
