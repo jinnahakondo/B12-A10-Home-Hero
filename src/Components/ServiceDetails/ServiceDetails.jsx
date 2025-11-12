@@ -66,10 +66,16 @@ const ServiceDetails = () => {
 
 
             {/* modal  */}
-            <dialog id="my_modal_5" ref={modalRef} className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box">
+            <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box max-sm:p-0">
                     <div className='max-w-3xl rounded-2xl mx-5 md:mx-auto bg-white  p-7 ' >
-                        <h2 className='heading mb-4'>Booking Service</h2>
+                        <div>
+                            <div>
+                                <img src={service.image} alt={service.title} />
+                            </div>
+                            <h3 className='text-xl font-semibold mb-3'>{service.title}</h3>
+                        </div>
+                        <h2 className='heading mb-4 mt-5'>Booking Service</h2>
                         <form className='space-y-4' onSubmit={handelSubmit}>
 
                             {/* User Email  */}
