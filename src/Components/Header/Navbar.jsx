@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import Loader from '../Loader/Loader';
 import { toast } from 'react-toastify';
 
 const Navbar = () => {
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light")
     const { user, loading, setLoading, logOut, } = useAuth()
+    useEffect(() => {
+        const html = document.querySelector("html");
+        html.setAttribute("data-theme", theme)
+        localStorage.setItem("theme", theme)
+        const nav = document.querySelector('nav');
+        if (theme === 'dark') {
+            nav.style.backgroundColor = "black"
+        }
+        else {
+            nav.style.backgroundColor = "#EBF2FA"
+        }
+
+    }, [theme])
     const handelLogOut = () => {
         logOut()
             .then(() => {
@@ -16,6 +30,7 @@ const Navbar = () => {
                 toast.error(error.code);
             })
     }
+
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/services'}>Services</NavLink></li>
@@ -26,9 +41,13 @@ const Navbar = () => {
             </>
         }
     </>
+    // dark & light
+    const handelTheme = (checked) => {
+        setTheme(checked ? 'dark' : 'light')
+    }
 
     return (
-        <div className=' bg-[#EBF2FA]  shadow-sm'>
+        <nav className={` bg-[#EBF2FA] hadow-sm`}>
             <div className="navbar h-20 max-w-7xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -37,7 +56,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex="-1"
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            className={`menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3   w-52 p-2 shadow`}>
                             {links}
                         </ul>
                     </div>
@@ -67,7 +86,13 @@ const Navbar = () => {
                                     <li>
                                         <Link to={'/my-profile'} > Profile</Link>
                                     </li>
-                                  <li><Link to={'/my-bookings'}>My Bookings</Link></li>
+                                    <li><Link to={'/my-bookings'}>My Bookings</Link></li>
+                                    <div className='ml-3'>
+                                        <input type="checkbox"
+                                            checked={theme == 'dark' ? true : false}
+                                            onChange={(e) => handelTheme(e.target.checked)}
+                                            className="toggle theme-controller" />
+                                    </div>
                                     <li><button onClick={handelLogOut}>Logout</button></li>
                                 </ul>
                             </div>
@@ -78,7 +103,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </nav>
     );
 };
 
