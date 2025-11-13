@@ -4,6 +4,7 @@ import useSecureAxios from '../../Hooks/useSecureAxios';
 import Loader from '../Loader/Loader';
 import useAuth from '../../Hooks/useAuth';
 import { toast } from 'react-toastify';
+import Review from '../Review/Review';
 
 const ServiceDetails = () => {
     const navigate = useNavigate()
@@ -35,11 +36,12 @@ const ServiceDetails = () => {
         e.preventDefault();
         const rating = e.target.rating.value;
         const comment = e.target.comment.value;
-        const review = { rating, comment }
+        const review = { user: user?.displayName, userImage: user?.photoURL, rating, comment, }
         instance.patch(`/services/reviews/${service._id}`, review)
             .then(() => {
                 toast.success('your comment has been saved')
             })
+
     }
 
 
@@ -47,7 +49,6 @@ const ServiceDetails = () => {
         return <Loader />
     }
 
-    // console.log(user.email, service.Email);
     const handelSubmit = e => {
         e.preventDefault();
         const serveicId = service._id;
@@ -109,8 +110,20 @@ const ServiceDetails = () => {
                     <div className='flex flex-col gap-2'>
                         <textarea name="comment" placeholder='What do you think about this servic?' rows="7" required className='border border-gray-300 rounded-lg p-3 outline-0'></textarea>
                     </div>
-                    <button type='submit' className='btn btn-primary'>Comment</button>
+                    <div className=''>
+                        <button type='submit' className='btn btn-primary'>Comment</button>
+                    </div>
                 </form>
+            </div>
+
+
+            {/* see review  */}
+
+            <div className='flex flex-col gap-5'>
+                <h3 className='text-xl font-bold text-primary my-10'>Reviews</h3>
+                {
+                    service.serviceReviews.map((review, i) => <Review key={i} review={review} />)
+                }
             </div>
             {/* </----reviews section-----> */}
 
