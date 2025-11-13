@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 const Profile = () => {
     const { user, updateUserProfile, setLoading } = useAuth()
-    console.log(user);
+    // console.log(user);
 
     const updateProfile = (e) => {
         e.preventDefault()
@@ -46,7 +46,7 @@ const Profile = () => {
                     .then(() => {
                         toast.success("profile updated successfully")
                         setLoading(false)
-                        console.log("after update");
+                        // console.log("after update");
                     })
                     .catch(error => toast.error(error.code))
             }

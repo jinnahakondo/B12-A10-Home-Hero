@@ -121,9 +121,9 @@ const ServiceDetails = () => {
 
             <div className='flex flex-col gap-5'>
                 <h3 className='text-xl font-bold text-primary mt-20 mb-5'>Reviews</h3>
-                {
-                    service.serviceReviews.map((review, i) => <Review key={i} review={review} />)
-                }
+                {/* {
+                    service?.serviceReviews.map((review, i) => <Review key={i} review={review} />)
+                } */}
             </div>
             {/* </----reviews section-----> */}
 

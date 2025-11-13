@@ -20,7 +20,7 @@ const MyBookings = () => {
             })
     }, [instance, user])
 
-    console.log(myBookings);
+    // console.log(myBookings);
 
     // booking delete function
     const handelDelete = (id) => {

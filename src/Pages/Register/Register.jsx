@@ -25,7 +25,7 @@ const Register = () => {
         }
         createUser(email, password)
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 updateUserProfile({ displayName, photoURL })
                     .then(() => {
                         navigate('/')
@@ -34,7 +34,7 @@ const Register = () => {
                     })
             })
             .catch(error => {
-                console.log(error.code);
+               toast.error(error.code);
             })
     }
 
@@ -42,7 +42,7 @@ const Register = () => {
     const handelGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 navigate('/')
                 setLoading(false)
                 toast.success('log in success')

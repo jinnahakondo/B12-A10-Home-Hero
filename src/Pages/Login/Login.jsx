@@ -24,19 +24,19 @@ const Login = () => {
 
         login(email, password)
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 setLoading(false)
                 navigate('/')
             })
             .catch(error => {
-                console.log(error.code);
+                toast.error(error.code);
             })
     }
     //google signin
     const handelGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 toast.success('log in success')
                 setLoading(false)
                 navigate('/')
