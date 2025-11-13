@@ -66,7 +66,7 @@ const MyServices = () => {
                         {myservice.map((service, i) => <tr key={service._id}>
                             <th>{i + 1}</th>
                             <td>
-                                <div className="flex flex-col-reverse md:flex-row items-center gap-3">
+                                <div className="flex items-center gap-3">
                                     <div className="avatar">
                                         <div className="h-12 w-16 rounded-sm object-cover">
                                             <img
@@ -75,7 +75,7 @@ const MyServices = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <h4 className="font-medium ">{service.title.slice(0, 40)}</h4>
+                                        <h4 className="font-medium ">{service.title}</h4>
                                     </div>
                                 </div>
                             </td>
@@ -83,9 +83,9 @@ const MyServices = () => {
                             <td>{service.Category}</td>
                             <td className='grid grid-cols-1 md:grid-cols-2 gap-4 ' >
 
-                                <Link to={`/update-service/${service._id}`} className="btn btn-primary text-xl px-5 "><MdEditDocument /></Link>
+                                <Link to={`/update-service/${service._id}`} className="btn btn-primary px-5 "><span className='text-xl '><MdEditDocument /></span></Link>
 
-                                <button onClick={() => handelDelete(service._id)} className="btn btn-error text-white text-xl px-5"><MdDelete /></button>
+                                <button onClick={() => handelDelete(service._id)} className="btn btn-error text-white  px-5"><span className='text-xl'><MdDelete /></span></button>
 
                             </td>
                         </tr>)}

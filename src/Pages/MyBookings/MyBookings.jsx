@@ -66,7 +66,7 @@ const MyBookings = () => {
                         {myBookings.map((booking, i) => <tr key={booking._id}>
                             <th>{i + 1}</th>
                             <td>
-                                <div className="flex flex-col-reverse md:flex-row items-center gap-3">
+                                <div className="flex  items-center justify-start gap-3">
                                     <div className="avatar">
                                         <div className="h-12 w-16 rounded-sm object-cover">
                                             <img
@@ -83,7 +83,7 @@ const MyBookings = () => {
                             <td>{booking.Price}</td>
                             <td>{booking.bookingDate}</td>
                             <td className='grid grid-cols-1 md:grid-cols-2 gap-4 ' >
-                                <button onClick={() => handelDelete(booking._id)} className="btn btn-error text-white text-xl px-5"><MdDelete /></button>
+                                <button onClick={() => handelDelete(booking._id)} className="btn btn-error text-white  px-5"><span className='text-xl'><MdDelete /></span></button>
 
                             </td>
                         </tr>)}
