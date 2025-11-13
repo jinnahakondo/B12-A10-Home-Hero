@@ -12,11 +12,11 @@ const AddServices = () => {
         const form = e.target;
         const title = form.serviceName.value;
         const image = form.imageUrl.value;
-        const description = form.description.value;
-        const price = form.price.value;
+        const Description = form.description.value;
+        const Price = form.price.value;
         const Category = form.category.value;
 
-        const newService = { title, image, description, price, Category, provider: user.displayName, email: user.email, created_at: new Date() }
+        const newService = { title, image, Description, Price, Category, provider: user.displayName, Email: user.email, created_at: new Date() }
 
         instance.post('/services', newService)
             .then(data => {

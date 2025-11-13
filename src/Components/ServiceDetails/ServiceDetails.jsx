@@ -12,25 +12,35 @@ const ServiceDetails = () => {
     const instance = useSecureAxios()
     const { id } = useParams()
     const [service, setService] = useState(null)
+    const [isDisabled, setIsDisabled] = useState(false)
 
     useEffect(() => {
         instance.get(`/services/${id}`)
             .then(data => {
                 setService(data.data)
+
             })
-    }, [instance, id])
-    if (!service || loading || !user) {
+
+        if (user && service) {
+            if (user.email === service.Email) {
+                setIsDisabled(true)
+            }
+        }
+
+    }, [instance, id, user, service])
+    if (!service) {
         return <Loader />
     }
 
+    // console.log(user.email, service.Email);
     const handelSubmit = e => {
         e.preventDefault();
         const serveicId = service._id;
         const serviceName = e.target.serviceName.value;
-        const email = user.email;
+        const Email = user.email;
         const Price = e.target.price.value;
         const bookingDate = e.target.bookingDate.value;
-        const newBooking = { serveicId, serviceName, serviceImage: service.image, email, Price, bookingDate }
+        const newBooking = { serveicId, serviceName, serviceImage: service.image, Email, Price, bookingDate }
 
         instance.post('/bookings', newBooking)
             .then(data => {
@@ -39,6 +49,7 @@ const ServiceDetails = () => {
                     modalRef.current.close()
                 }
             })
+
     }
     // console.log(service.image);
     return (
@@ -63,7 +74,7 @@ const ServiceDetails = () => {
             </div>
             <div className='mt-10 flex input-accent gap-5'>
                 <button onClick={() => navigate(-1)} className='btn py-5 bg-black text-white'>Go Back</button>
-                <button onClick={() => { modalRef.current.showModal() }} className='btn btn-primary px-8'>Book now</button>
+                <button onClick={() => { modalRef.current.showModal() }} disabled={isDisabled} className='btn btn-primary px-8'>Book now</button>
             </div>
 
 

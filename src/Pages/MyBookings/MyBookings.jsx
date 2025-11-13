@@ -4,6 +4,7 @@ import useAuth from '../../Hooks/useAuth';
 import useSecureAxios from '../../Hooks/useSecureAxios';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import Loader from '../../Components/Loader/Loader';
 
 const MyBookings = () => {
     const [myBookings, setMyBookings] = useState([]);
@@ -45,6 +46,10 @@ const MyBookings = () => {
             }
         });
 
+    }
+    // console.log(user.email);
+    if (!user) {
+        return <Loader />
     }
     return (
         <div className='max-w-7xl mx-auto px-5 min-h-screen'>
