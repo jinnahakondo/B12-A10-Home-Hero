@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { data, useNavigate, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import useSecureAxios from '../../Hooks/useSecureAxios';
 import Loader from '../Loader/Loader';
 import useAuth from '../../Hooks/useAuth';
@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const ServiceDetails = () => {
     const navigate = useNavigate()
-    const { user } = useAuth()
+    const { user, loading } = useAuth()
     const modalRef = useRef()
     const instance = useSecureAxios()
     const { id } = useParams()
@@ -19,7 +19,7 @@ const ServiceDetails = () => {
                 setService(data.data)
             })
     }, [instance, id])
-    if (!service) {
+    if (!service || loading || !user) {
         return <Loader />
     }
 
