@@ -26,7 +26,7 @@ const MyBookings = () => {
 
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "Do you want to cancel this booking?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -38,8 +38,7 @@ const MyBookings = () => {
                     .then(() => {
                         setMyBookings(myBookings.filter(s => s._id !== id))
                         Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
+                            text: "Your booking has been canceled.",
                             icon: "success"
                         });
                     })
@@ -83,7 +82,7 @@ const MyBookings = () => {
                             <td>{booking.Price}</td>
                             <td>{booking.bookingDate}</td>
                             <td className='grid grid-cols-1 md:grid-cols-2 gap-4 ' >
-                                <button onClick={() => handelDelete(booking._id)} className="btn btn-error text-white  px-5"><span className='text-xl'><MdDelete /></span></button>
+                                <button onClick={() => handelDelete(booking._id)} className="btn btn-error text-white  px-5">cancel</button>
 
                             </td>
                         </tr>)}
