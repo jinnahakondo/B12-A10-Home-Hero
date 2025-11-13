@@ -19,9 +19,7 @@ const MainLayout = () => {
                 <Outlet></Outlet>
             </main>
             <footer>
-                <div className='max-w-7xl mx-auto px-5'>
-                    <Footer />
-                </div>
+                <Footer />
             </footer>
         </div>
     );

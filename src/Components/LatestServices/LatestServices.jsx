@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Service from '../Service/Service';
 import useSecureAxios from '../../Hooks/useSecureAxios';
+import Loader from '../Loader/Loader';
 
 
 const LatestServices = () => {
@@ -10,10 +11,12 @@ const LatestServices = () => {
         instance.get('/services/home')
             .then(data => {
                 setService(data.data)
-                console.log(data.data);
+                // console.log(data.data);
             })
     }, [instance])
-    // console.log(service);
+    if (service.length == '0') {
+        <Loader />
+    }
     return (
         <div className='mt-20'>
             <h2 className='heading text-center mb-5'>Latest Services</h2>

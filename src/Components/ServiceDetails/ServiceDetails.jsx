@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const ServiceDetails = () => {
     const navigate = useNavigate()
-    const { user, loading } = useAuth()
+    const { user } = useAuth()
     const modalRef = useRef()
     const instance = useSecureAxios()
     const { id } = useParams()
@@ -21,6 +21,7 @@ const ServiceDetails = () => {
 
             })
 
+        // veryfing is service was created by me ?
         if (user && service) {
             if (user.email === service.Email) {
                 setIsDisabled(true)
@@ -28,6 +29,20 @@ const ServiceDetails = () => {
         }
 
     }, [instance, id, user, service])
+
+    // for review 
+    const handelReview = (e) => {
+        e.preventDefault();
+        const rating = e.target.rating.value;
+        const comment = e.target.comment.value;
+        const review = { rating, comment }
+        instance.patch(`/services/reviews/${service._id}`, review)
+            .then(() => {
+                toast.success('your comment has been saved')
+            })
+    }
+
+
     if (!service) {
         return <Loader />
     }
@@ -76,6 +91,29 @@ const ServiceDetails = () => {
                 <button onClick={() => navigate(-1)} className='btn py-5 bg-black text-white'>Go Back</button>
                 <button onClick={() => { modalRef.current.showModal() }} disabled={isDisabled} className='btn btn-primary px-8'>Book now</button>
             </div>
+
+            {/* <-----reviews section-----> */}
+
+            <div className=''>
+                <h2 className='heading mt-10 mb-7 text-center'>Rate this service</h2>
+                <form className='space-y-10' onSubmit={handelReview}>
+                    <select className='btn bg-amber-400 border border-gray-600 rounded-lg' name='rating'>
+                        <option disabled selected>select for rating</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    {/*Description  */}
+                    <div className='flex flex-col gap-2'>
+                        <textarea name="comment" placeholder='What do you think about this servic?' rows="7" required className='border border-gray-300 rounded-lg p-3 outline-0'></textarea>
+                    </div>
+                    <button type='submit' className='btn btn-primary'>Comment</button>
+                </form>
+            </div>
+            {/* </----reviews section-----> */}
+
 
 
             {/* modal  */}

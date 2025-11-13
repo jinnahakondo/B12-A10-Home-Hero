@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useSecureAxios from '../../Hooks/useSecureAxios';
 import useAuth from '../../Hooks/useAuth';
 import { MdDelete, MdEditDocument } from "react-icons/md";
 import { Link } from 'react-router';
-import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
 const MyServices = () => {
@@ -12,10 +11,13 @@ const MyServices = () => {
     const [myservice, setMyService] = useState([])
 
     useEffect(() => {
-        instance.get(`my-services?email=${user.email}`)
-            .then(data => {
-                setMyService(data.data);
-            })
+        if (user) {
+            instance.get(`my-services?email=${user.email}`)
+                .then(data => {
+                    setMyService(data.data);
+                })
+        }
+
     }, [instance, user])
 
 
