@@ -11,6 +11,7 @@ import AddServices from "../Pages/Add services/AddServices";
 import MyServices from "../Pages/MyServicess/MyServices";
 import UpdateService from "../Components/UpdateService/UpdateService";
 import ServiceDetails from "../Components/ServiceDetails/ServiceDetails";
+import MyBookings from "../Pages/MyBookings/MyBookings";
 
 export const router = createBrowserRouter([
     {
@@ -39,7 +40,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: `/update-service/:id`,
-                loader: ({ params }) => fetch(`http://localhost:3000/services/${params.id}`),
+                loader: ({ params }) => fetch(`https://home-hero-server-api.vercel.app/services/${params.id}`),
                 element: <PrivateRoutes>
                     <UpdateService />
                 </PrivateRoutes>
@@ -54,6 +55,12 @@ export const router = createBrowserRouter([
                 path: '/my-profile',
                 element: <PrivateRoutes>
                     <Profile />
+                </PrivateRoutes>
+            },
+            {
+                path: '/my-bookings',
+                element: <PrivateRoutes>
+                    <MyBookings />
                 </PrivateRoutes>
             },
         ]

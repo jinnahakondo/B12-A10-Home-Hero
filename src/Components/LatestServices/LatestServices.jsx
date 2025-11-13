@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Service from '../Service/Service';
-import useAxios from '../../Hooks/useAxios';
+import useSecureAxios from '../../Hooks/useSecureAxios';
 
 
 const LatestServices = () => {
-    const instance = useAxios()
+    const instance = useSecureAxios()
     const [service, setService] = useState([])
     useEffect(() => {
         instance.get('/services/home')

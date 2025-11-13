@@ -26,10 +26,11 @@ const ServiceDetails = () => {
     const handelSubmit = e => {
         e.preventDefault();
         const serveicId = service._id;
+        const serviceName = e.target.serviceName.value;
         const email = user.email;
         const Price = e.target.price.value;
         const bookingDate = e.target.bookingDate.value;
-        const newBooking = { serveicId, email, Price, bookingDate }
+        const newBooking = { serveicId, serviceName, serviceImage: service.image, email, Price, bookingDate }
 
         instance.post('/bookings', newBooking)
             .then(data => {
@@ -39,6 +40,7 @@ const ServiceDetails = () => {
                 }
             })
     }
+    // console.log(service.image);
     return (
         <div className='max-w-7xl mx-auto px-5 mt-20 min-h-screen'>
 
@@ -78,18 +80,26 @@ const ServiceDetails = () => {
                         <h2 className='heading mb-4 mt-5'>Booking Service</h2>
                         <form className='space-y-4' onSubmit={handelSubmit}>
 
+                            {/* Service title  */}
+                            <div className='flex flex-col gap-2'>
+                                <label>Service Title</label>
+                                <input type="text"
+                                    value={service.title}
+                                    readOnly
+                                    name='serviceName' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
+                            </div>
                             {/* User Email  */}
                             <div className='flex flex-col gap-2'>
                                 <label>User Email</label>
                                 <input type="email"
                                     value={user.email}
                                     readOnly
-                                    placeholder='user email' name='userEmail' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
+                                    name='userEmail' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
                             </div>
                             {/*Price */}
                             <div className='flex flex-col gap-2'>
                                 <label>Price</label>
-                                <input type="number" placeholder='price' name='price' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
+                                <input type="text" value={service.Price} name='price' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
                             </div>
                             {/* Booking Date */}
                             <div className='flex flex-col gap-2'>

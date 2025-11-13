@@ -1,25 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react';
-import useSecureAxios from '../../Hooks/useSecureAxios';
+import React, { useEffect, useState } from 'react';
+import { MdDelete, MdEditDocument } from 'react-icons/md';
 import useAuth from '../../Hooks/useAuth';
-import { MdDelete, MdEditDocument } from "react-icons/md";
+import useSecureAxios from '../../Hooks/useSecureAxios';
 import { Link } from 'react-router';
-import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
-const MyServices = () => {
+const MyBookings = () => {
+    const [myBookings, setMyBookings] = useState([]);
+
     const { user } = useAuth()
     const instance = useSecureAxios()
-    const [myservice, setMyService] = useState([])
+
 
     useEffect(() => {
-        instance.get(`my-services?email=${user.email}`)
+        instance.get(`/my-bookings?email=${user.email}`)
             .then(data => {
-                setMyService(data.data);
+                setMyBookings(data.data);
             })
     }, [instance, user])
 
+    console.log(myBookings);
 
-    // handel Delete
+    // booking delete function
     const handelDelete = (id) => {
 
         Swal.fire({
@@ -32,9 +34,9 @@ const MyServices = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                instance.delete(`/services/${id}`)
+                instance.delete(`/booking/${id}`)
                     .then(() => {
-                        setMyService(myservice.filter(s => s._id !== id))
+                        setMyBookings(myBookings.filter(s => s._id !== id))
                         Swal.fire({
                             title: "Deleted!",
                             text: "Your file has been deleted.",
@@ -44,48 +46,44 @@ const MyServices = () => {
             }
         });
 
-
     }
     return (
         <div className='max-w-7xl mx-auto px-5 min-h-screen'>
-
-
-
+            <h2 className='heading text-center my-6'>My Bookings</h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
                     <thead className='text-sm md:text-base'>
                         <tr>
                             <th>SL</th>
-                            <th>Service Info</th>
-                            <th>Category</th>
+                            <th>booking Info</th>
+                            <th>Price</th>
+                            <th>Date</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {myservice.map((service, i) => <tr key={service._id}>
+                        {myBookings.map((booking, i) => <tr key={booking._id}>
                             <th>{i + 1}</th>
                             <td>
                                 <div className="flex flex-col-reverse md:flex-row items-center gap-3">
                                     <div className="avatar">
                                         <div className="h-12 w-16 rounded-sm object-cover">
                                             <img
-                                                src={service.image}
+                                                src={booking.serviceImage}
                                                 alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div>
                                     <div>
-                                        <h4 className="font-medium ">{service.title.slice(0, 40)}</h4>
+                                        <h4 className="font-medium ">{booking.serviceName}</h4>
                                     </div>
                                 </div>
                             </td>
 
-                            <td>{service.Category}</td>
+                            <td>{booking.Price}</td>
+                            <td>{booking.bookingDate}</td>
                             <td className='grid grid-cols-1 md:grid-cols-2 gap-4 ' >
-
-                                <Link to={`/update-service/${service._id}`} className="btn btn-primary text-xl px-5 "><MdEditDocument /></Link>
-
-                                <button onClick={() => handelDelete(service._id)} className="btn btn-error text-white text-xl px-5"><MdDelete /></button>
+                                <button onClick={() => handelDelete(booking._id)} className="btn btn-error text-white text-xl px-5"><MdDelete /></button>
 
                             </td>
                         </tr>)}
@@ -96,4 +94,4 @@ const MyServices = () => {
     );
 };
 
-export default MyServices;
+export default MyBookings;
