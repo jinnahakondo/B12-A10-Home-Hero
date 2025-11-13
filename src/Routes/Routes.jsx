@@ -12,6 +12,7 @@ import MyServices from "../Pages/MyServicess/MyServices";
 import UpdateService from "../Components/UpdateService/UpdateService";
 import ServiceDetails from "../Components/ServiceDetails/ServiceDetails";
 import MyBookings from "../Pages/MyBookings/MyBookings";
+import Errorpage from "../Pages/Error page/Errorpage";
 
 export const router = createBrowserRouter([
     {
@@ -78,5 +79,9 @@ export const router = createBrowserRouter([
                 Component: Register
             }
         ]
+    },
+    {
+        path: '*',
+        Component: Errorpage
     }
 ])
