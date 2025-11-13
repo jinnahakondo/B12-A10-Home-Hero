@@ -77,7 +77,7 @@ const ServiceDetails = () => {
                 </div>
                 <div className='space-y-2'>
                     <h2 className='text-lg  md:text-2xl lg:text-4xl font-bold mb-3'>{service.title}</h2>
-                    <p className='font-medium'>{service.Price}</p>
+                    <p className='font-medium'>BDT {service.Price}</p>
                     <div>
                         <p className='text-gray-500 font-bold'>description:</p>
                         <p className='text-gray-500'>{service.Description}</p>
@@ -98,7 +98,7 @@ const ServiceDetails = () => {
             <div className=''>
                 <h2 className='heading mt-10 mb-7 text-center'>Rate this service</h2>
                 <form className='space-y-10' onSubmit={handelReview}>
-                    <select className='btn bg-amber-400 border border-gray-600 rounded-lg' name='rating'>
+                    <select className='btn bg-amber-500 border border-gray-600 rounded-lg' name='rating'>
                         <option disabled selected>select for rating</option>
                         <option>1</option>
                         <option>2</option>
@@ -120,7 +120,7 @@ const ServiceDetails = () => {
             {/* see review  */}
 
             <div className='flex flex-col gap-5'>
-                <h3 className='text-xl font-bold text-primary my-10'>Reviews</h3>
+                <h3 className='text-xl font-bold text-primary mt-20 mb-5'>Reviews</h3>
                 {
                     service.serviceReviews.map((review, i) => <Review key={i} review={review} />)
                 }

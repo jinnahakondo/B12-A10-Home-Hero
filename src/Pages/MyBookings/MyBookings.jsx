@@ -47,7 +47,7 @@ const MyBookings = () => {
         });
 
     }
-    // console.log(user.email);
+    // console.log();
     if (!user) {
         return <Loader />
     }
@@ -88,6 +88,7 @@ const MyBookings = () => {
                             <td>{booking.bookingDate}</td>
                             <td className='grid grid-cols-1 md:grid-cols-2 gap-4 ' >
                                 <button onClick={() => handelDelete(booking._id)} className="btn btn-error text-white  px-5">cancel</button>
+                                <Link to={`/service-details/${booking.serveicId}`} className="btn btn-primary text-white px-5" >Rating</Link>
 
                             </td>
                         </tr>)}
