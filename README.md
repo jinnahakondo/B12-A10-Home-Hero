@@ -1,17 +1,28 @@
-# React + Vite
+<h2>HomeHero</h2>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p>HomeHero is a Home Service Provider App. Users can book services from their local service providers, and providers can add, manage, and update their services.
+</p>
+<h3>🚀 Key Features</h3>
+<h3>👤 User Features:</h3>
 
-Currently, two official plugins are available:
+<h3>Update their profile</h3>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<ul>
+  <li> Book services</li>
+  <li> Cancel booked services</li>
+  <li> Rate and comment on services to share their opinions</li>
+</ul>
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<h3>🛠️ Provider Features:</h3>
+<ul>
+  <li> Add new services</li>
+  <li>Update existing services</li>
+  <li>Delete services</li>
+</ul>
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# Home-Hero
+
+
+<h3> 🔗 Live Demo</h3>
+👉 <a href="https://home-hero-b7a6e.web.app/"> HomeHero Demo</a>
