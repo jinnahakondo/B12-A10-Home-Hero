@@ -30,4 +30,13 @@
 ### How to run the project locally
 1. Clone the repository
 ```bash
-hello
+git@github.com:jinnahakondo/B12-A10-Home-Hero.git
+```
+2. Install npm packeges
+```bash
+npm i
+```
+3. Run the project
+```bash
+npm run dev
+```
