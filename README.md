@@ -2,8 +2,8 @@
 
 <p>HomeHero is a Home Service Provider App. Users can book services from their local service providers, and providers can add, manage, and update their services.
 </p>
-<h3>🚀 Key Features</h3>
-<h3>👤 User Features:</h3>
+###🚀 Key Features
+###👤 User Features:
 
 <h3>Update their profile</h3>
 
@@ -24,5 +24,10 @@
 
 
 
-<h3> 🔗 Live Demo</h3>
+### 🔗 Live Demo
 👉 <a href="https://home-hero-b7a6e.web.app/"> HomeHero Demo</a>
+
+### How to run the project locally
+1. Clone the repository
+```bash
+hello
