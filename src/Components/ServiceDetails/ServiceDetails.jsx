@@ -18,7 +18,7 @@ const ServiceDetails = () => {
     useEffect(() => {
         instance.get(`/services/${id}`)
             .then(data => {
-                setService(data.data)
+                setService(data.data || [])
 
             })
 
@@ -99,7 +99,7 @@ const ServiceDetails = () => {
                 <h2 className='heading mt-10 mb-7 text-center'>Rate this service</h2>
                 <form className='space-y-10' onSubmit={handelReview}>
                     <select className='btn bg-amber-500 border border-gray-600 rounded-lg' name='rating'>
-                        <option disabled selected>select for rating</option>
+                        <option disabled defaultValue={''}>select for rating</option>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -121,9 +121,9 @@ const ServiceDetails = () => {
 
             <div className='flex flex-col gap-5'>
                 <h3 className='text-xl font-bold text-primary mt-20 mb-5'>Reviews</h3>
-                {/* {
+                {
                     service?.serviceReviews.map((review, i) => <Review key={i} review={review} />)
-                } */}
+                }
             </div>
             {/* </----reviews section-----> */}
 
@@ -161,7 +161,7 @@ const ServiceDetails = () => {
                             {/*Price */}
                             <div className='flex flex-col gap-2'>
                                 <label>Price</label>
-                                <input type="text" value={service.Price} name='price' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
+                                <input type="text" defaultValue={service.Price} name='price' className='h-12 rounded-lg border px-5 border-gray-300 outline-0' />
                             </div>
                             {/* Booking Date */}
                             <div className='flex flex-col gap-2'>
