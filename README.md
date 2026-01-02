@@ -34,6 +34,7 @@ git@github.com:jinnahakondo/B12-A10-Home-Hero.git
 ```
 2. Install npm packeges
 ```bash
+cd B12-A10-Home-Hero
 npm i
 ```
 3. Run the project
