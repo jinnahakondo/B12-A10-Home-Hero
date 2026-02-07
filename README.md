@@ -9,6 +9,12 @@ This project focuses on solving real-life service booking problems by connecting
 
 ## 🚀 Key Features
 
+### 🌟 Core Platform Features
+- Analytics Dashboards
+- Role-Based Access Control
+- Service Management
+- Search & Filter
+
 ### 👤 User Features
 - Update personal profile
 - Book home services easily
@@ -41,7 +47,6 @@ This project focuses on solving real-life service booking problems by connecting
 ---
 
 ## 📂 Project Structure (Example)
-
 
 ### How to run the project locally
 1. Clone the repository
